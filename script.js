@@ -26,8 +26,11 @@ const categories = [
 const getMovies = async(path) => {
     let url = `https://api.themoviedb.org/3/${path}`
     const response = await fetch(url)
+    console.log(response)
     return await response.json()
 }
+
+getMovies(`/discover/movie?api_key=${API_KEY}&with_genres=28`)
 
 
 
