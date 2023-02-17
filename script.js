@@ -23,14 +23,26 @@ const categories = [
     }
 ]
 
+
 const getMovies = async(path) => {
-    let url = `https://api.themoviedb.org/3/${path}`
-    const response = await fetch(url)
-    console.log(response)
-    return await response.json()
+    try {
+        let url = `https://api.themoviedb.org/3${path}`
+        const response = await fetch(url)
+        return await response.json()
+        console.log(response)
+    } catch (error) {
+        console.log("Error getMovies: " + error)
+    }
 }
 
-getMovies(`/discover/movie?api_key=${API_KEY}&with_genres=28`)
+function horror () {
+    getMovies(categories.name=horror)
+    var horrorMovies = document.querySelector("#horror").createElement("div")
+    horrorMovies.classList.add("horrorElement")
+    horrorMovies.innerHTML = img
+}
 
+
+//getMovies(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=28`)
 
 
