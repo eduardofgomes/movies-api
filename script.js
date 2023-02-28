@@ -26,17 +26,15 @@ const categories = [
 
 
 const getMovies = async(path) => {
-    let data = []
     try {
         let url = `https://api.themoviedb.org/3${path}`
         const response = await fetch(url)
         const responseData = await response.json()
-        
         data = responseData?.results
-        console.log(data)
     } catch (error) {
         console.error("Error getMovies: " + error)
     }
+    return data
 }
 
 /*categories.map((category) => {
@@ -45,19 +43,19 @@ const getMovies = async(path) => {
     newCard.setAttribute('id', category.id)
 })*/
 
-const moviesDiv = document.querySelector("#movies")
+var moviesDiv = document.querySelector("#movies")
 
 const renderMovies = async() => {
-    const movies =  await getMovies(`/discover/movie?api_key=${API_KEY}&with_genres=27`)
+    const movies = await getMovies(`/discover/movie?api_key=${API_KEY}&with_genres=28`)
     console.log(movies)
-    moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie)).join("")
+    moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie))
 }
 
-const renderSingleMovie = (movie) => {
+const renderSingleMovie = (movies) => {
     return (
         `
         <div>
-            <img src="${config.image_base_url + movie?.poster.path}" class="img-fluid">
+            <img src="${image_base_url + movies?.poster_path}" class=img-fluid">
         </div>
         `
     )
