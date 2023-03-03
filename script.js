@@ -1,5 +1,6 @@
-const API_KEY = "f4ee9eea2def44757865f44c719be46b";
+const API_KEY = "f4ee9eea2def44757865f44c719be46b"
 const image_base_url =  "https://image.tmdb.org/t/p/w1280"
+const base_url = "https://api.themoviedb.org/3"
 
 const categories = [
     {
@@ -27,7 +28,7 @@ const categories = [
 
 const getMovies = async(path) => {
     try {
-        let url = `https://api.themoviedb.org/3${path}`
+        let url = `${base_url}${path}`
         const response = await fetch(url)
         const responseData = await response.json()
         data = responseData?.results
@@ -46,17 +47,19 @@ const getMovies = async(path) => {
 var moviesDiv = document.querySelector("#movies")
 
 const renderMovies = async() => {
-    const movies = await getMovies(`/discover/movie?api_key=${API_KEY}&with_genres=28`)
+    const movies = await getMovies(`/discover/movie?api_key=${API_KEY}&with_genres=10752`)
     console.log(movies)
-    moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie))
+    moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie)).join("")
 }
 
 const renderSingleMovie = (movies) => {
+    //let section = document.createElement("div")
+    //section.setAttribute("class", "bg-danger")
     return (
         `
-        <div>
-            <img src="${image_base_url + movies?.poster_path}" class=img-fluid">
-        </div>
+        
+            <img src="${image_base_url + movies?.poster_path}" class=img-fluid" id="banner">
+        
         `
     )
 }

@@ -1,0 +1,10 @@
+#banner {
+    width: 7rem !important;
+    background-color: red;
+}
+
+#movies {
+    display: flex !important;
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+}
