@@ -1,10 +1,33 @@
 #banner {
-    width: 7rem !important;
+    width: 7.5rem !important;
     background-color: red;
+    transition: transform 450ms;
+}
+
+#banner:hover {
+    transform: scale(1.08)
+}
+
+.container-app {
+    padding: 1rem;
 }
 
 #movies {
     display: flex !important;
     overflow-x: scroll !important;
     overflow-y: hidden !important;
+}
+
+#movies::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    background-color: #100C08;
+}
+
+.title {
+    color: #fff;
+    display: flex;
+    justify-content: center;
 }

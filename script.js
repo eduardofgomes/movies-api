@@ -24,6 +24,7 @@ const categories = [
         path: `/discover/movie?api_key=${API_KEY}&with_genres=28`
     }
 ]
+console.log(categories[0].path)
 
 
 const getMovies = async(path) => {
@@ -46,8 +47,8 @@ const getMovies = async(path) => {
 
 var moviesDiv = document.querySelector("#movies")
 
-const renderMovies = async() => {
-    const movies = await getMovies(`/discover/movie?api_key=${API_KEY}&with_genres=10752`)
+const renderMovies = async(genre) => {
+    const movies = await getMovies(`/discover/movie?api_key=${genre}`)
     console.log(movies)
     moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie)).join("")
 }
@@ -57,14 +58,12 @@ const renderSingleMovie = (movies) => {
     //section.setAttribute("class", "bg-danger")
     return (
         `
-        
-            <img src="${image_base_url + movies?.poster_path}" class=img-fluid" id="banner">
-        
+        <img src="${image_base_url + movies?.poster_path}" class=img-fluid" id="banner">
         `
     )
 }
 
-renderMovies()
+renderMovies(categories[0].path)
 
 
 //getMovies(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=28`)
