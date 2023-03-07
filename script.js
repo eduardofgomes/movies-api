@@ -46,25 +46,24 @@ const getMovies = async(path) => {
 
 var moviesDiv = document.querySelector("#movies")
 
+
+
 const renderMovies = async() => {
-    const movies = await getMovies(categories[0].path)
-    console.log(movies)
-    moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie)).join("")
+    try {
+        const movies = await getMovies(categories[0].path)
+        console.log(movies)
+        moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie)).join("")
+    } catch (error) {
+        console.error("Error renderMovies" + error)
+    }
 }
 
 const renderSingleMovie = (movies) => {
-    //let section = document.createElement("div")
-    //section.setAttribute("class", "bg-danger")
     return (
         `
-        <img src="${image_base_url + movies?.poster_path}" class=img-fluid" id="banner">
+        <img src="${image_base_url + movies?.poster_path}" id="poster">
         `
     )
 }
 
 renderMovies()
-
-
-//getMovies(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=28`)
-
-
