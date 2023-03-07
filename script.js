@@ -24,7 +24,6 @@ const categories = [
         path: `/discover/movie?api_key=${API_KEY}&with_genres=28`
     }
 ]
-console.log(categories[0].path)
 
 
 const getMovies = async(path) => {
@@ -47,8 +46,8 @@ const getMovies = async(path) => {
 
 var moviesDiv = document.querySelector("#movies")
 
-const renderMovies = async(genre) => {
-    const movies = await getMovies(`/discover/movie?api_key=${genre}`)
+const renderMovies = async() => {
+    const movies = await getMovies(categories[0].path)
     console.log(movies)
     moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie)).join("")
 }
@@ -63,7 +62,7 @@ const renderSingleMovie = (movies) => {
     )
 }
 
-renderMovies(categories[0].path)
+renderMovies()
 
 
 //getMovies(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=28`)
