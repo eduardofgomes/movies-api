@@ -63,14 +63,21 @@ function showMovie() {
                 moviesDiv.setAttribute("class", "moviesGenre")
                 document.querySelector("#movies").appendChild(moviesDiv);
                 const movies = await getMovies(category.path)
-                console.log(movies)
+                movies.map(movie => {
+                    console.log(movie.overview)
+                })
                 moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie)).join("")
+                
             } catch (error) {
                 console.error("Error renderMovies" + error)
             }
         }
         renderMovies() 
     })
+}
+
+function modal() {
+    
 }
 
 showMovie()
