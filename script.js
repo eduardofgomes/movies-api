@@ -22,7 +22,12 @@ const categories = [
         name: "action",
         title: "action",
         path: `/discover/movie?api_key=${API_KEY}&with_genres=28`
-    }
+    },
+    {
+        name: "documentary",
+        title: "documentary",
+        path: `/discover/movie?api_key=${API_KEY}&with_genres=99`
+    },
 ]
 
         const getMovies = async(path) => {
