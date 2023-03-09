@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 #poster {
-    width: 8rem;
+    width: 7.5rem;
     background-color: red;
     transition: transform 450ms;
+}
+
+#main-title {
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+    justify-content: center;
+    display: flex;
+    font-size: 4rem;
 }
 
 #poster:hover {
@@ -21,11 +29,6 @@
     margin-top: 1rem;
 }
 
-.title {
-    margin-top: 5rem;
-    font-family: 'Open Sans', sans-serif;
-}
-
 .moviesGenre::-webkit-scrollbar {
     display: none;
 }
@@ -37,5 +40,7 @@ body {
 .title {
     color: #fff;
     display: flex;
-    justify-content: center;
+    justify-content: left;
+    margin-top: 5rem;
+    font-family: 'Open Sans', sans-serif;
 }
