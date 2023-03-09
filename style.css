@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 #poster {
-    width: 7.5rem !important;
+    width: 8rem;
     background-color: red;
     transition: transform 450ms;
 }
@@ -9,16 +11,22 @@
 }
 
 .container-app {
-    padding: 1rem;
+    padding-left: 1rem;
 }
 
-#movies {
-    display: flex !important;
-    overflow-x: scroll !important;
-    overflow-y: hidden !important;
+.moviesGenre {
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    margin-top: 1rem;
 }
 
-#movies::-webkit-scrollbar {
+.title {
+    margin-top: 5rem;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.moviesGenre::-webkit-scrollbar {
     display: none;
 }
 

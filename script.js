@@ -25,7 +25,6 @@ const categories = [
     }
 ]
 
-
         const getMovies = async(path) => {
             try {
                 let url = `${base_url}${path}`
@@ -37,8 +36,6 @@ const categories = [
             }
             return data
         }
-        
-        //var moviesDiv = document.querySelector("#movies")
         
         const renderSingleMovie = (movies) => {
             return (
@@ -52,8 +49,13 @@ function showMovie() {
     categories.map(category => {
         const renderMovies = async() => {
             try {
+                var titleGenre = document.createElement("h3")
+                titleGenre.setAttribute("class", "title")
+                titleGenre.innerHTML = category.title.toUpperCase()
+                document.querySelector("#movies").appendChild(titleGenre)
                 var moviesDiv = document.createElement("div")
                 moviesDiv.setAttribute("id", category.name)
+                moviesDiv.setAttribute("class", "moviesGenre")
                 document.querySelector("#movies").appendChild(moviesDiv);
                 const movies = await getMovies(category.path)
                 console.log(movies)
