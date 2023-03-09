@@ -1,5 +1,5 @@
 const API_KEY = "f4ee9eea2def44757865f44c719be46b"
-const image_base_url =  "https://image.tmdb.org/t/p/w1280"
+const image_base_url = "https://image.tmdb.org/t/p/w1280"
 const base_url = "https://api.themoviedb.org/3"
 
 const categories = [
@@ -26,44 +26,44 @@ const categories = [
 ]
 
 
-const getMovies = async(path) => {
-    try {
-        let url = `${base_url}${path}`
-        const response = await fetch(url)
-        const responseData = await response.json()
-        data = responseData?.results
-    } catch (error) {
-        console.error("Error getMovies: " + error)
-    }
-    return data
+        const getMovies = async(path) => {
+            try {
+                let url = `${base_url}${path}`
+                const response = await fetch(url)
+                const responseData = await response.json()
+                data = responseData?.results
+            } catch (error) {
+                console.error("Error getMovies: " + error)
+            }
+            return data
+        }
+        
+        //var moviesDiv = document.querySelector("#movies")
+        
+        const renderSingleMovie = (movies) => {
+            return (
+                `
+                <img src="${image_base_url + movies?.poster_path}" id="poster">
+                `
+            )
+        }
+
+function showMovie() {
+    categories.map(category => {
+        const renderMovies = async() => {
+            try {
+                var moviesDiv = document.createElement("div")
+                moviesDiv.setAttribute("id", category.name)
+                document.querySelector("#movies").appendChild(moviesDiv);
+                const movies = await getMovies(category.path)
+                console.log(movies)
+                moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie)).join("")
+            } catch (error) {
+                console.error("Error renderMovies" + error)
+            }
+        }
+        renderMovies() 
+    })
 }
 
-/*categories.map((category) => {
-    newCard = document.querySelector(".container-app")
-    newCard = document.createElement('div')
-    newCard.setAttribute('id', category.id)
-})*/
-
-var moviesDiv = document.querySelector("#movies")
-
-
-
-const renderMovies = async() => {
-    try {
-        const movies = await getMovies(categories[0].path)
-        console.log(movies)
-        moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie)).join("")
-    } catch (error) {
-        console.error("Error renderMovies" + error)
-    }
-}
-
-const renderSingleMovie = (movies) => {
-    return (
-        `
-        <img src="${image_base_url + movies?.poster_path}" id="poster">
-        `
-    )
-}
-
-renderMovies()
+showMovie()
