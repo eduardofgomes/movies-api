@@ -46,6 +46,13 @@ const categories = [
             return (
                 `
                 <img src="${image_base_url + movies?.poster_path}" id="poster">
+
+                <div id="modalMovies" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>${movies?.overview}</p>
+                    </div>
+                </div>
                 `
             )
         }
@@ -63,9 +70,6 @@ function showMovie() {
                 moviesDiv.setAttribute("class", "moviesGenre")
                 document.querySelector("#movies").appendChild(moviesDiv);
                 const movies = await getMovies(category.path)
-                movies.map(movie => {
-                    console.log(movie.overview)
-                })
                 moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie)).join("")
                 
             } catch (error) {
@@ -76,8 +80,11 @@ function showMovie() {
     })
 }
 
-function modal() {
-    
-}
+    var button = document.querySelectorAll("#poster")
+    var modal = document.querySelectorAll("#modalMovies")
+
+    button.onclick = () => {
+        modal.style.display = "block"
+    } 
 
 showMovie()
