@@ -45,7 +45,7 @@ const categories = [
         const renderSingleMovie = (movies) => {
             return (
                 `
-                <img src="${image_base_url + movies?.poster_path}" id="poster">
+                <img src="${image_base_url + movies?.poster_path}" class="poster">
 
                 <div id="modalMovies" class="modal">
                     <div class="modal-content">
@@ -80,11 +80,17 @@ function showMovie() {
     })
 }
 
-    var button = document.querySelectorAll("#poster")
-    var modal = document.querySelectorAll("#modalMovies")
+setTimeout(() => {
+    var button = document.querySelectorAll(".poster")
 
-    button.onclick = () => {
+    console.log(button)
+    }, 5000);
+    var modal = document.querySelectorAll("#modalMovies")
+    console.log(modal)
+
+    /*button.onclick = function() {
         modal.style.display = "block"
-    } 
+        console.log('ce é bão')
+    }*/
 
 showMovie()

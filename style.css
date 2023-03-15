@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
-#poster {
+.poster {
     width: 7.5rem;
     background-color: red;
     transition: transform 450ms;
@@ -14,7 +14,7 @@
     font-size: 4rem;
 }
 
-#poster:hover {
+.poster:hover {
     transform: scale(1.08)
 }
 
