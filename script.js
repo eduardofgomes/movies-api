@@ -22,12 +22,7 @@ const categories = [
         name: "action",
         title: "action",
         path: `/discover/movie?api_key=${API_KEY}&with_genres=28`
-    },
-    {
-        name: "documentary",
-        title: "documentary",
-        path: `/discover/movie?api_key=${API_KEY}&with_genres=99`
-    },
+    }
 ]
 
         const getMovies = async(path) => {
@@ -58,7 +53,7 @@ const categories = [
         }
 
 function showMovie() {
-    categories.map(category => {
+    categories?.map(category => {
         const renderMovies = async() => {
             try {
                 var titleGenre = document.createElement("h3")
@@ -81,16 +76,21 @@ function showMovie() {
 }
 
 setTimeout(() => {
-    var button = document.querySelectorAll(".poster")
-
-    console.log(button)
-    }, 5000);
-    var modal = document.querySelectorAll("#modalMovies")
+    var a = document.querySelectorAll(".poster")
+    var button = [...a]
+    button.forEach(element =>
+        element.addEventListener("click", showModal)
+    )
+    var b = document.querySelectorAll("#modalMovies")
+    var modal = [...b]
     console.log(modal)
+    console.log(button)
 
-    /*button.onclick = function() {
-        modal.style.display = "block"
-        console.log('ce é bão')
-    }*/
+    function showModal() {
+        modal?.map(p => {
+            p.style.display = "block"
+        }) 
+    }
+    }, 1000);
 
 showMovie()
