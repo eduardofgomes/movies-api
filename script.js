@@ -40,7 +40,7 @@ const categories = [
         const renderSingleMovie = (movies) => {
             return (
                 `
-                <img src="${image_base_url + movies?.poster_path}" class="poster">
+                <img src="${image_base_url + movies?.poster_path}" class="poster" id="${movies?.id}">
 
                 <div id="modalMovies" class="modal">
                     <div class="modal-content">
@@ -75,6 +75,7 @@ function showMovie() {
     })
 }
 
+
 setTimeout(() => {
     var a = document.querySelectorAll(".poster")
     var button = [...a]
@@ -87,9 +88,9 @@ setTimeout(() => {
     console.log(button)
 
     function showModal() {
-        modal?.map(p => {
+        /*modal?.map(p => {
             p.style.display = "block"
-        }) 
+        }) fazer um indexOf comparando os dois arrays para abrir apenas um modal; usar um for ou for in para tal*/
     }
     }, 1000);
 
