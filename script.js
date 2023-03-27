@@ -37,14 +37,14 @@ const categories = [
             return data
         }
         
-        const renderSingleMovie = (movies) => {
+        const renderSingleMovie = (movies) => { //adicionar o id posteriormente com o index de cada poster com add class
             return (
                 `
-                <img src="${image_base_url + movies?.poster_path}" class="poster" id="${movies?.id}">
+                <img src="${image_base_url + movies?.poster_path}" class="poster" data-modal="modal${movies?.id}" />
 
-                <div id="modalMovies" class="modal">
+                <div id="modal${movies?.id}" class="modal"> 
                     <div class="modal-content">
-                        <span class="close">&times;</span>
+                        <span class="modal-close">&times;</span>
                         <p>${movies?.overview}</p>
                     </div>
                 </div>
@@ -76,22 +76,28 @@ function showMovie() {
 }
 
 
-setTimeout(() => {
-    var a = document.querySelectorAll(".poster")
-    var button = [...a]
-    button.forEach(element =>
-        element.addEventListener("click", showModal)
-    )
-    var b = document.querySelectorAll("#modalMovies")
-    var modal = [...b]
-    console.log(modal)
-    console.log(button)
+setTimeout(() => { //use async and await in this function
+    var button = document.querySelectorAll(".poster")
+    button.forEach(function(btn) {
+        btn.onclick = () => {
+            var modal = btn.getAttribute("data-modal")
+            document.getElementById(modal).style.display = "block"
+        }
+    })
 
-    function showModal() {
-        /*modal?.map(p => {
-            p.style.display = "block"
-        }) fazer um indexOf comparando os dois arrays para abrir apenas um modal; usar um for ou for in para tal*/
+    var close = document.querySelectorAll(".modal-close")
+    close.forEach(function(btn) {
+        btn.onclick = () => {
+            var modal = btn.closest(".modal").style.display = "none"
+        }
+    })
+
+    window.onclick = (e) => {
+        if(e.target.classname === "modal") {
+            e.target.style.display = "none";
+        }
     }
+    
     }, 1000);
 
 showMovie()
