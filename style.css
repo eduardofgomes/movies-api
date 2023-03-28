@@ -49,31 +49,33 @@ body {
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 100px;
+    padding-top: 10rem;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .modal-content {
     background-color: #fff;
     margin: auto;
-    padding: 20px;
-    width: 80%;
+    padding: 2rem;
+    width: 50rem;
+    border-radius: 0.3rem;
 }
 
-.close {
+.modal-close {
     color: #aaaaaa;
     float: right;
-    font-size: 28px;
+    font-size: 2rem;
     font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
 }
 
-.close:hover,
-.close:focus {
+.modal-close:hover,
+.modal-close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;

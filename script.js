@@ -88,15 +88,15 @@ setTimeout(() => { //use async and await in this function
     var close = document.querySelectorAll(".modal-close")
     close.forEach(function(btn) {
         btn.onclick = () => {
-            var modal = btn.closest(".modal").style.display = "none"
+            btn.closest(".modal").style.display = "none"
         }
     })
 
     window.onclick = (e) => {
-        if(e.target.classname === "modal") {
+        if(e.target.classList.contains("modal")){
             e.target.style.display = "none";
         }
-    }
+    };
     
     }, 1000);
 
