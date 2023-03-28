@@ -2,8 +2,11 @@
 
 .poster {
     width: 7.5rem;
-    background-color: red;
     transition: transform 450ms;
+}
+
+.poster:hover {
+    transform: scale(1.08)
 }
 
 #main-title {
@@ -14,9 +17,6 @@
     font-size: 4rem;
 }
 
-.poster:hover {
-    transform: scale(1.08)
-}
 
 .container-app {
     padding-left: 1rem;
@@ -58,12 +58,17 @@ body {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
+.image-modal {
+    width: 10rem;
+    float: center;
+}
+
 .modal-content {
     background-color: #fff;
     margin: auto;
     padding: 2rem;
     width: 50rem;
-    border-radius: 0.3rem;
+    border-radius: 0.3rem;   
 }
 
 .modal-close {

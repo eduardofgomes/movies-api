@@ -44,6 +44,7 @@ const categories = [
 
                 <div id="modal${movies?.id}" class="modal"> 
                     <div class="modal-content">
+                        <img src="${image_base_url + movies?.poster_path}" class="image-modal" />
                         <span class="modal-close">&times;</span>
                         <p>${movies?.overview}</p>
                     </div>
