@@ -44,9 +44,9 @@ const categories = [
 
                 <div id="modal${movies?.id}" class="modal"> 
                     <div class="modal-content">
-                        <img src="${image_base_url + movies?.poster_path}" class="image-modal" />
                         <span class="modal-close">&times;</span>
-                        <p>${movies?.overview}</p>
+                        <img src="${image_base_url + movies?.poster_path}" class="image-modal" />
+                        <p class="title">${movies?.overview}</p>
                     </div>
                 </div>
                 `
@@ -58,7 +58,7 @@ function showMovie() {
         const renderMovies = async() => {
             try {
                 var titleGenre = document.createElement("h3")
-                titleGenre.setAttribute("class", "title")
+                titleGenre.setAttribute("class", "title-category")
                 titleGenre.innerHTML = category.title.toUpperCase()
                 document.querySelector("#movies").appendChild(titleGenre)
                 var moviesDiv = document.createElement("div")
