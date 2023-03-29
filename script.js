@@ -46,7 +46,9 @@ const categories = [
                     <div class="modal-content">
                         <span class="modal-close">&times;</span>
                         <img src="${image_base_url + movies?.poster_path}" class="image-modal" />
+                        <h3 class="title">${movies?.title}</h3>
                         <p class="title">${movies?.overview}</p>
+                        
                     </div>
                 </div>
                 `
@@ -83,6 +85,7 @@ setTimeout(() => { //use async and await in this function
         btn.onclick = () => {
             var modal = btn.getAttribute("data-modal")
             document.getElementById(modal).style.display = "block"
+            document.body.style.overflow = "hidden"
         }
     })
 
@@ -90,12 +93,14 @@ setTimeout(() => { //use async and await in this function
     close.forEach(function(btn) {
         btn.onclick = () => {
             btn.closest(".modal").style.display = "none"
+            document.body.style.overflow = "auto"
         }
     })
 
     window.onclick = (e) => {
         if(e.target.classList.contains("modal")){
             e.target.style.display = "none";
+            document.body.style.overflow = "auto"
         }
     };
     
