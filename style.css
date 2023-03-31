@@ -53,9 +53,10 @@ body {
 
 .modal {
     display: none;
+    justify-content: center;
     position: fixed;
     z-index: 1;
-    padding-top: 10rem;
+    padding-top: 1rem;
     left: 0;
     top: 0;
     width: 100%;
@@ -72,12 +73,17 @@ body {
 .modal-content {
     background-color: #111111;
     margin: auto;
-    padding: 2rem;
+    padding: 0.5rem 2rem 2rem 2rem;
     width: 50rem;
     border-radius: 0.3rem;   
 }
 
 .modal-close {
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.close {
     color: #aaaaaa;
     float: right;
     font-size: 2rem;
@@ -85,8 +91,8 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.modal-close:hover,
-.modal-close:focus {
+.close:hover,
+.close:focus {
     color: gray;
     text-decoration: none;
     cursor: pointer;

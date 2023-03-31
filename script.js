@@ -37,17 +37,21 @@ const categories = [
             return data
         }
         
-        const renderSingleMovie = (movies) => { //adicionar o id posteriormente com o index de cada poster com add class
+        const renderSingleMovie = (movies) => {
             return (
                 `
                 <img src="${image_base_url + movies?.poster_path}" class="poster" data-modal="modal${movies?.id}" />
 
                 <div id="modal${movies?.id}" class="modal"> 
                     <div class="modal-content">
-                        <span class="modal-close">&times;</span>
-                        <img src="${image_base_url + movies?.poster_path}" class="image-modal" />
-                        <h3 class="title">${movies?.title}</h3>
-                        <p class="title">${movies?.overview}</p>
+                        <div class="modal-close">
+                            <span class="close">&times;</span>
+                        </div>
+                        <div class="modal-information">
+                            <img src="${image_base_url + movies?.poster_path}" class="image-modal" />
+                            <h3 class="title">${movies?.title}</h3>
+                            <p class="title">${movies?.overview}</p>
+                        </div>
                         
                     </div>
                 </div>
@@ -84,7 +88,7 @@ setTimeout(() => { //use async and await in this function
     button.forEach(function(btn) {
         btn.onclick = () => {
             var modal = btn.getAttribute("data-modal")
-            document.getElementById(modal).style.display = "block"
+            document.getElementById(modal).style.display = "flex"
             document.body.style.overflow = "hidden"
         }
     })
