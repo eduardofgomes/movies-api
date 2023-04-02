@@ -38,8 +38,9 @@ const categories = [
         }
         
         const renderSingleMovie = (movies) => {
+            getTrailer(movies?.id)
             return (
-                `
+                `   
                 <img src="${image_base_url + movies?.poster_path}" class="poster" data-modal="modal${movies?.id}" />
 
                 <div id="modal${movies?.id}" class="modal"> 
@@ -48,15 +49,27 @@ const categories = [
                             <span class="close">&times;</span>
                         </div>
                         <div class="modal-information">
-                            <img src="${image_base_url + movies?.poster_path}" class="image-modal" />
+                            <img src="${image_base_url + movies?.backdrop_path}" class="image-modal" />
                             <h3 class="title">${movies?.title}</h3>
                             <p class="title">${movies?.overview}</p>
+                            <a class="title trailer" href="https:/www.youtube.com/watch?v=${data[0].key}" target="_blank">Trailer</a>
                         </div>
-                        
                     </div>
                 </div>
                 `
             )
+        }
+
+        const getTrailer = async (id) => {
+            try {
+                let url = `${base_url}/movie/${id}/videos?api_key=${API_KEY}&language=en-US`
+                const response = await fetch(url)
+                const responseData = await response.json()
+                data = responseData?.results
+                console.log(data[0].key)
+            } catch (error) {
+                console.log("Error getTrailer: " + error)
+            }
         }
 
 function showMovie() {

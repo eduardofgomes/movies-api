@@ -66,14 +66,14 @@ body {
 }
 
 .image-modal {
-    width: 10rem;
+    width: 100%;
     float: center;
 }
 
 .modal-content {
     background-color: #111111;
     margin: auto;
-    padding: 0.5rem 2rem 2rem 2rem;
+    padding: 0.5rem 1rem 1rem 1rem;
     width: 50rem;
     border-radius: 0.3rem;   
 }
@@ -95,5 +95,13 @@ body {
 .close:focus {
     color: gray;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.trailer {
+    text-decoration: none;
+}
+
+.trailer:hover {
     cursor: pointer;
 }
