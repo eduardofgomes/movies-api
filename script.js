@@ -25,52 +25,51 @@ const categories = [
     }
 ]
 
-        const getMovies = async(path) => {
-            try {
-                let url = `${base_url}${path}`
-                const response = await fetch(url)
-                const responseData = await response.json()
-                data = responseData?.results
-            } catch (error) {
-                console.error("Error getMovies: " + error)
-            }
-            return data
-        }
+const getMovies = async(path) => {
+    try {
+        let url = `${base_url}${path}`
+        const response = await fetch(url)
+        const responseData = await response.json()
+        data = responseData?.results
+    } catch (error) {
+        console.error("Error getMovies: " + error)
+    }
+    return data
+}
+
+/*const getTrailer = async (id) => {
+    try {
+        let url = `${base_url}/movie/${id}/videos?api_key=${API_KEY}&language=en-US`
+        const response = await fetch(url)
+        const responseData = await response.json()
+        dataTrailer = responseData?.results
+    } catch (error) {
+        console.log("Error getTrailer: " + error)
+    }
+    return dataTrailer[0].key
+}*/
         
-        const renderSingleMovie = (movies) => {
-            getTrailer(movies?.id)
-            return (
-                `   
-                <img src="${image_base_url + movies?.poster_path}" class="poster" data-modal="modal${movies?.id}" />
+const renderSingleMovie = (movies) => {
+    console.log(movies)
+    return (
+        `   
+        <img src="${image_base_url + movies?.poster_path}" class="poster" data-modal="modal${movies?.id}" />
 
-                <div id="modal${movies?.id}" class="modal"> 
-                    <div class="modal-content">
-                        <div class="modal-close">
-                            <span class="close">&times;</span>
-                        </div>
-                        <div class="modal-information">
-                            <img src="${image_base_url + movies?.backdrop_path}" class="image-modal" />
-                            <h3 class="title">${movies?.title}</h3>
-                            <p class="title">${movies?.overview}</p>
-                            <a class="title trailer" href="https:/www.youtube.com/watch?v=${data[0].key}" target="_blank">Trailer</a>
-                        </div>
-                    </div>
+        <div id="modal${movies?.id}" class="modal"> 
+            <div class="modal-content">
+                <div class="modal-close">
+                        <span class="close">&times;</span>
                 </div>
-                `
-            )
-        }
-
-        const getTrailer = async (id) => {
-            try {
-                let url = `${base_url}/movie/${id}/videos?api_key=${API_KEY}&language=en-US`
-                const response = await fetch(url)
-                const responseData = await response.json()
-                data = responseData?.results
-                console.log(data[0].key)
-            } catch (error) {
-                console.log("Error getTrailer: " + error)
-            }
-        }
+                <div class="modal-information">
+                    <img src="${image_base_url + movies?.backdrop_path}" class="image-modal" />
+                    <h3 class="title">${movies?.title}</h3>
+                    <p class="title">${movies?.overview}</p>
+                </div>
+            </div>
+        </div>
+        `
+    )
+}
 
 function showMovie() {
     categories?.map(category => {
@@ -86,7 +85,6 @@ function showMovie() {
                 document.querySelector("#movies").appendChild(moviesDiv);
                 const movies = await getMovies(category.path)
                 moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie)).join("")
-                
             } catch (error) {
                 console.error("Error renderMovies" + error)
             }
@@ -94,7 +92,6 @@ function showMovie() {
         renderMovies() 
     })
 }
-
 
 setTimeout(() => { //use async and await in this function
     var button = document.querySelectorAll(".poster")
