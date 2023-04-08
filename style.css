@@ -17,7 +17,7 @@
     font-size: 4rem;
 }
 
-.title {
+.text {
     font-family: 'Open Sans', sans-serif;
     color: #fff;
     cursor: default;
@@ -33,6 +33,14 @@
     overflow-x: scroll;
     overflow-y: hidden;
     margin-top: 1rem;
+}
+
+.info-movie {
+    font-size: 0.95rem;
+}
+
+.overview {
+    font-size: 1.1rem;
 }
 
 .moviesGenre::-webkit-scrollbar {
