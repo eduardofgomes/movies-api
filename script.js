@@ -37,7 +37,7 @@ const getMovies = async(path) => {
     return data
 }
 
-/*const getTrailer = async (id) => {
+const getTrailer = async (id) => {
     try {
         let url = `${baseUrl}/movie/${id}/videos?api_key=${api_key}&language=en-US`
         const response = await fetch(url)
@@ -47,10 +47,10 @@ const getMovies = async(path) => {
         console.log("Error getTrailer: " + error)
     }
     return dataTrailer[0].key
-}*/
+}
         
-const renderSingleMovie = (movies) => {
-    console.log(movies)
+const renderSingleMovie = (movies, trailer) => {
+    
     return (
         `   
         <img src="${imageBaseUrl + movies?.poster_path}" class="poster" data-modal="modal${movies?.id}" />
@@ -63,6 +63,7 @@ const renderSingleMovie = (movies) => {
                 <div class="modal-information">
                     <img src="${imageBaseUrl + movies?.backdrop_path}" class="image-modal text" alt="Image not found"/>
                     <h2 class="text">${movies?.title}</h2>
+                    <a href="https://youtube.com/watch?v=${trailer}" target="_blank" class="text">trailer</a>
                     <p class="text overview">${movies?.overview}</p>
                     <p class="info-movie text">${movies?.release_date ? movies?.release_date.split('-')[0] : "Not Released"}
                     rate: ${movies?.vote_average ? movies?.vote_average : "Not rated"}
@@ -87,7 +88,9 @@ function showMovie() {
                 moviesDiv.setAttribute("class", "moviesGenre")
                 document.querySelector("#movies").appendChild(moviesDiv);
                 const movies = await getMovies(category.path)
-                moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie)).join("")
+                const trailer = await getTrailer(movies[0].id)
+                console.log(trailer)
+                moviesDiv.innerHTML = movies?.map(movie => renderSingleMovie(movie, trailer)).join("")
             } catch (error) {
                 console.error("Error renderMovies" + error)
             }
