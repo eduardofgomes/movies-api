@@ -46,7 +46,7 @@ const getTrailer = async (id) => {
     } catch (error) {
         console.log("Error getTrailer: " + error)
     }
-    return dataTrailer[0]
+    return dataTrailer[0].key
 }
         
 const renderSingleMovie = (movie, trailer) => {
@@ -88,7 +88,7 @@ function showMovie() {
                 document.querySelector("#movies").appendChild(moviesDiv);
                 const movies = await getMovies(category.path)
                 const trailer = await getTrailer(movies[0].id)
-                moviesDiv.innerHTML = movies?.map(async movie => {
+                moviesDiv.innerHTML = movies?.map(movie => {
                     //trailer = await getTrailer(movie.id)
                     return renderSingleMovie(movie, trailer )
                 }).join("")
@@ -124,7 +124,6 @@ setTimeout(() => {
             document.body.style.overflow = "auto"
         }
     };
-    
-    }, 1000);
+}, 1000);
 
 showMovie()
