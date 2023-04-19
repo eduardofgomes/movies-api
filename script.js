@@ -90,7 +90,7 @@ function showMovie() {
                 //const trailer = await getTrailer(movies[0].id)
                 //console.log(trailer)
                 moviesDiv.innerHTML = movies?.map((movie) => {
-                    trailer = fetch(`${baseUrl}/movie/${movie.id}/videos?api_key=${api_key}&language=en-US`).then(result => result.json().then({return: trailer}))
+                    trailer = getTrailer(movie.id).then(result => {return result})
                     return renderSingleMovie(movie, trailer)
                 }).join("")
             } catch (error) {
