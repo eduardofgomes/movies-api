@@ -46,7 +46,7 @@ const getTrailer = async (id) => {
     } catch (error) {
         console.log("Error getTrailer: " + error)
     }
-    return dataTrailer[0].key
+    return dataTrailer[0].key  
 }
         
 const renderSingleMovie = (movie, trailer) => {
@@ -62,10 +62,10 @@ const renderSingleMovie = (movie, trailer) => {
                 <div class="modal-information">
                     <img src="${imageBaseUrl + movie?.backdrop_path}" class="image-modal text" alt="Image not found"/>
                     <h2 class="text">${movie?.title}</h2>
-                    <a href="https://youtube.com/watch?v=${trailer}" target="_blank" class="text">trailer</a>
                     <p class="text overview">${movie?.overview}</p>
                     <p class="info-movie text">${movie?.release_date ? movie?.release_date.split('-')[0] : "Not Released"}
                     rate: ${movie?.vote_average ? movie?.vote_average : "Not rated"}
+                    <a href="https://youtube.com/watch?v=${trailer}" target="_blank" class="text trailer">trailer</a>
                     </p>
                 </div>
             </div>
@@ -87,10 +87,11 @@ function showMovie() {
                 moviesDiv.setAttribute("class", "moviesGenre")
                 document.querySelector("#movies").appendChild(moviesDiv);
                 const movies = await getMovies(category.path)
-                const trailer = await getTrailer(movies[0].id)
-                moviesDiv.innerHTML = movies?.map(movie => {
-                    //trailer = await getTrailer(movie.id)
-                    return renderSingleMovie(movie, trailer )
+                //const trailer = await getTrailer(movies[0].id)
+                //console.log(trailer)
+                moviesDiv.innerHTML = movies?.map((movie) => {
+                    trailer = fetch(`${baseUrl}/movie/${movie.id}/videos?api_key=${api_key}&language=en-US`).then(result => result.json().then({return: trailer}))
+                    return renderSingleMovie(movie, trailer)
                 }).join("")
             } catch (error) {
                 console.error("Error renderMovies" + error)
