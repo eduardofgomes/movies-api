@@ -87,14 +87,13 @@ function showMovie() {
                 moviesDiv.setAttribute("class", "moviesGenre")
                 document.querySelector("#movies").appendChild(moviesDiv);
                 const movies = await getMovies(category.path)
-                for await (const video of movies) {
-                    trailer = getTrailer(video?.id).then(result => {return result})
-                    console.log(trailer)
-                }
                 //const trailer = await getTrailer(movies[0].id)
-                //console.log(trailer)
                 moviesDiv.innerHTML = movies?.map((movie) => {
-                    //trailer = getTrailer(movie.id).then(result => {return result})
+                    movies.map(async i => {
+                        const trailer = await getTrailer(i?.id)
+                        console.log(trailer)
+                    })
+                    
                     //console.log(trailer)
                     return renderSingleMovie(movie, trailer)
                 }).join("")
