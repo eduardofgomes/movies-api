@@ -92,15 +92,15 @@ function showMovie() {
                     return qlq
                 })*/
                 const trailer = movies?.map(async (m) => {
-                    const isso = await getTrailer(m.id)
+                    const isso = await getTrailer(m.id).then(result => {return result})
                     return isso
-                    //console.log(isso)
                 })
-                console.log(trailer[0])
+
                 moviesDiv.innerHTML = movies?.map((movie, index) => {
-                    //const trailer = getTrailer(movie?.id).then(data => {return data})
-                    //console.log(trailer)
-                    return renderSingleMovie(movie, trailer[index])
+                    const oi = trailer[index].then(result => {
+                        return console.log(result)
+                    })
+                    return renderSingleMovie(movie, oi)
                 }).join("")
             } catch (error) {
                 console.error("Error renderMovies" + error)
