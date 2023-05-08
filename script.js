@@ -40,13 +40,13 @@ const getMovies = async(path) => {
 const getTrailer = async (id) => {
     try {
         let url = `${baseUrl}/movie/${id}/videos?api_key=${api_key}&language=en-US`
-        const response = await fetch(url)
+        const response = await fetch(url) 
         const responseData = await response.json()
         dataTrailer = responseData?.results
     } catch (error) {
         console.log("Error getTrailer: " + error)
     }
-    return dataTrailer[0]
+    return dataTrailer[0] !== undefined ? dataTrailer[0] : "No trailer" 
 }
         
 const renderSingleMovie = (movie, trailer) => {
@@ -87,14 +87,13 @@ function showMovie() {
                 moviesDiv.setAttribute("class", "moviesGenre")
                 document.querySelector("#movies").appendChild(moviesDiv);
                 const movies = await getMovies(category.path)
-                //const trailer = await getTrailer(movies[0]?.id)
-                for await (let movie of movies) {
+                const trailer = await getTrailer(movies[7]?.id)
+                /*for await (let movie of movies) {
                     if(movies.indexOf(movie) > 18) {
                         break
                     }
-                    
                     trailer = await getTrailer(movie?.id)
-                }
+                }*/
                 moviesDiv.innerHTML = movies?.map((movie) => {
                     return renderSingleMovie(movie, trailer)
                 }).join("")
