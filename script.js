@@ -87,15 +87,15 @@ function showMovie() {
                 moviesDiv.setAttribute("class", "moviesGenre")
                 document.querySelector("#movies").appendChild(moviesDiv);
                 const movies = await getMovies(category.path)
-                const trailer = await getTrailer(movies[7]?.id)
-                /*for await (let movie of movies) {
-                    if(movies.indexOf(movie) > 18) {
-                        break
-                    }
+                //const trailer = await getTrailer(movies[7]?.id)
+                const array = []
+                for await (let movie of movies) {
                     trailer = await getTrailer(movie?.id)
-                }*/
-                moviesDiv.innerHTML = movies?.map((movie) => {
-                    return renderSingleMovie(movie, trailer)
+                    trailer !== undefined ? array.push(trailer) : array.push("No trailer")
+                }
+                console.log(array)
+                moviesDiv.innerHTML = movies?.map((movie, index) => {
+                    return renderSingleMovie(movie, array[index])
                 }).join("")
             } catch (error) {
                 console.error("Error renderMovies" + error)
