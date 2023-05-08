@@ -46,7 +46,7 @@ const getTrailer = async (id) => {
     } catch (error) {
         console.log("Error getTrailer: " + error)
     }
-    return dataTrailer[0].key  
+    return dataTrailer[0]
 }
         
 const renderSingleMovie = (movie, trailer) => {
@@ -65,7 +65,7 @@ const renderSingleMovie = (movie, trailer) => {
                     <p class="text overview">${movie?.overview}</p>
                     <p class="info-movie text">${movie?.release_date ? movie?.release_date.split('-')[0] : "Not Released"}
                     rate: ${movie?.vote_average ? movie?.vote_average : "Not rated"}
-                    <a href="https://youtube.com/watch?v=${trailer}" target="_blank" class="text trailer">trailer</a>
+                    <a href="https://youtube.com/watch?v=${trailer.key}" target="_blank" class="text trailer">trailer</a>
                     </p>
                 </div>
             </div>
@@ -89,10 +89,12 @@ function showMovie() {
                 const movies = await getMovies(category.path)
                 //const trailer = await getTrailer(movies[0]?.id)
                 for await (let movie of movies) {
-                    console.log("eduardo")
+                    if(movies.indexOf(movie) > 18) {
+                        break
+                    }
+                    
                     trailer = await getTrailer(movie?.id)
                 }
-                console.log(trailer)
                 moviesDiv.innerHTML = movies?.map((movie) => {
                     return renderSingleMovie(movie, trailer)
                 }).join("")
