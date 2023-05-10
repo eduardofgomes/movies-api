@@ -36,7 +36,8 @@
 }
 
 .info-movie {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
+    width: 100%;
 }
 
 .overview {
@@ -108,8 +109,17 @@ body {
 
 .trailer {
     text-decoration: none;
+    align-items: center;
 }
 
-.trailer:hover {
+.button-trailer {
+    border-radius: 0.5rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    border: none;
+}
+
+.button-trailer:hover {
     cursor: pointer;
+    background-color: #cccccc;
 }

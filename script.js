@@ -64,8 +64,8 @@ const renderSingleMovie = (movie, trailer) => {
                     <h2 class="text">${movie?.title}</h2>
                     <p class="text overview">${movie?.overview}</p>
                     <p class="info-movie text">${movie?.release_date ? movie?.release_date.split('-')[0] : "Not Released"}
-                    rate: ${movie?.vote_average ? movie?.vote_average : "Not rated"}
-                    <a href="https://youtube.com/watch?v=${trailer.key}" target="_blank" class="text trailer">trailer</a>
+                    Rate: ${movie?.vote_average ? movie?.vote_average : "Not rated"}
+                    <a href="https://youtube.com/watch?v=${trailer.key}" target="_blank" class="trailer"><button class="button-trailer">Trailer</button></a>
                     </p>
                 </div>
             </div>
@@ -87,7 +87,6 @@ function showMovie() {
                 moviesDiv.setAttribute("class", "moviesGenre")
                 document.querySelector("#movies").appendChild(moviesDiv);
                 const movies = await getMovies(category.path)
-                //const trailer = await getTrailer(movies[7]?.id)
                 const array = []
                 for await (let movie of movies) {
                     trailer = await getTrailer(movie?.id)
@@ -106,8 +105,8 @@ function showMovie() {
 }
 
 setTimeout(() => {
-    var button = document.querySelectorAll(".poster")
-    button.forEach(function(btn) {
+    var buttons = document.querySelectorAll(".poster")
+    buttons.forEach(function(btn) {
         btn.onclick = () => {
             var modal = btn.getAttribute("data-modal")
             document.getElementById(modal).style.display = "flex"
@@ -128,7 +127,7 @@ setTimeout(() => {
             e.target.style.display = "none";
             document.body.style.overflow = "auto"
         }
-    };
-}, 1000);
+    }
+}, 5000);
 
 showMovie()
