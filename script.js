@@ -132,11 +132,14 @@ setTimeout(() => {
 }, 5000);
 
 setTimeout(() => {
-    const availableTrailer = document.querySelectorAll("a").href
+    const availableTrailer = document.querySelectorAll("a")
+    const buttonTrailer = document.querySelectorAll(".button-trailer")
     console.log(availableTrailer)
-    /*availableTrailer.forEach((e) => {
-        console.log(e)
-    })*/
+    availableTrailer.forEach((e) => {
+        if(e.href === "https://youtube.com/watch?v=undefined") {
+            buttonTrailer[e].style.display = "none"
+        }
+    })
 }, 7000)
 
 showMovie()
