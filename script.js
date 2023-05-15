@@ -135,7 +135,7 @@ setTimeout(() => {
     const availableTrailers = document.querySelectorAll("a")
     availableTrailers.forEach((e) => {
         if(e.href === "https://youtube.com/watch?v=undefined") {
-            e.children[0].style.display = "none"
+            e.style.display = "none"
         }
     })
 }, 6000)
