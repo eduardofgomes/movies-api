@@ -74,6 +74,8 @@ const renderSingleMovie = (movie, trailer) => {
     )
 }
 
+
+
 function showMovie() {
     categories?.map(category => {
         const renderMovies = async() => {
@@ -128,5 +130,13 @@ setTimeout(() => {
         }
     }
 }, 5000);
+
+setTimeout(() => {
+    const availableTrailer = document.querySelectorAll("a").href
+    console.log(availableTrailer)
+    /*availableTrailer.forEach((e) => {
+        console.log(e)
+    })*/
+}, 7000)
 
 showMovie()
