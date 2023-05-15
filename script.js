@@ -138,6 +138,14 @@ setTimeout(() => {
             e.style.display = "none"
         }
     })
+
+    const moviesGenre = document.querySelectorAll(".movies-genre")
+    var arrowsLeft = document.createElement("div")
+    arrowsLeft.setAttribute("class", "arrows-left")
+    var arrowsRight = document.createElement("div")
+    arrowsLeft.setAttribute("class", "arrows-right")
+    arrowsLeft.innerHTML = "<"
+    moviesGenre.appendChild(arrowsLeft)
 }, 6000)
 
 showMovie()
